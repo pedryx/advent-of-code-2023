@@ -16,8 +16,6 @@ fn get_total_cards(cards: &Vec<usize>, cache: &mut Vec<Option<usize>>, card_inde
 }
 
 fn main() {
-    let start = std::time::Instant::now();
-
     let cards =include_str!("../in.txt")
         .lines()
         .map(|l| l.split([':', '|']).next_tuple().unwrap())
@@ -33,8 +31,6 @@ fn main() {
     let mut result_part2 = cards.len();
     let mut cache = vec![None; cards.len()];
     result_part2 += (0..cards.len()).map(|c| get_total_cards(&cards, &mut cache, c)).sum::<usize>();
-
-    println!("time: {:?}", start.elapsed());
 
     println!("part 1: {}", result_part1);
     println!("part 2: {}", result_part2);
